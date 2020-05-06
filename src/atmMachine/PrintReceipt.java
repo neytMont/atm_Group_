@@ -13,8 +13,7 @@ public class PrintReceipt
 		
 		if(choice == 1) 
 		{
-			System.out.println("ATM");
-			System.out.println("Date:");
+			System.out.println("====================ATM====================");
 			System.out.println("Location: LONG-BEACH-CA");
 			System.out.println("ATM #: 16542M");
 			System.out.println("\nUser Card: " + Account.getCardNum());
@@ -22,6 +21,7 @@ public class PrintReceipt
 			System.out.println("Total Balance: " + Account.getBalance());
 			System.out.println("Thank you for using our ATM.");
 			System.out.println("For questions, call RIFA\nBusiness customers call NATHAN");
+			System.out.println("===========================================");
 		}
 		else 
 		{

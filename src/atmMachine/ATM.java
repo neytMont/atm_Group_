@@ -1,7 +1,6 @@
 package atmMachine;
 import java.util.List;
 import java.util.Scanner;
-import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -44,7 +43,6 @@ public class ATM
 			System.out.println("Card does not Exist");
 			System.exit(0);
 		}
-
 
 		//fix pin number attempts
 		for(int i = 0; i < 3; i++) 
@@ -101,16 +99,15 @@ public class ATM
 					System.exit(0);
 				}	
 			}
-			
 		}//end of for loop pin num verification
 		
 		//save to file
 		//opens the same text then writes the new balance	
 		try 
 		{
-			String numCard = String.valueOf(Account.cardNum);
-			String numPin = String.valueOf(Account.pinNum);
-			String numBalance = String.valueOf(Account.balance);
+			String numCard = String.valueOf(Account.cardNum);//string val of card num
+			String numPin = String.valueOf(Account.pinNum);//string val of pin num
+			String numBalance = String.valueOf(Account.balance);//string val of balance
 			
 			FileWriter fw = new FileWriter(numCard + ".txt");
 			fw.write(numCard + "\n" + numPin + "\n" + numBalance);

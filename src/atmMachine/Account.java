@@ -13,7 +13,6 @@ public class Account
 		Account.balance = bal;
 	}
 	
-
 	/**
 	 * Gets the Balance in the Account.
 	 * 
@@ -24,13 +23,10 @@ public class Account
 		return Double.parseDouble(balance);
 	} // End of getBalance
 
-
-	
 	public static int getCardNum() 
 	{
 		return cardNum;
 	}
-
 
 	/**
 	 * Sets the Balance in the Account.
