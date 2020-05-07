@@ -6,8 +6,8 @@ public class CheckBalance
 	public static void checkBalance()
 	{
 		System.out.println("===============CHECK BALANCE===============");
-		System.out.println("Card Number : " + Account.getCardNum());
-		System.out.println("Balance     : " + Account.getBalance());
+		System.out.println("Card Number 		 : " + Account.getCardNum());
+		System.out.println("Checking Balance     : " + Account.getBalance());
 		System.out.println("===========================================");
 	}
 }

@@ -16,19 +16,33 @@ public class ATM
 		
 		Scanner sc = new Scanner(System.in);
 		List<String> lines = null;
-		System.out.println("Welcome to the ATM.");
-		System.out.println("Please Enter Card Number: "); // give a 6 digit card num
-		int cardNum = sc.nextInt();//takes the card number from user
 		
-		/**
-		 * need to make a txt file where the name is the card num.
-		 * in the file the first line will be the pin num.
-		 * the program will access the file by asking the user to enter the card num which is its name
-		 * then the program will ask the user to enter the pin num. 
-		 * if the pin num is equal to the second line of the txt file, then take the balance. 
-		 * If not equal to the second line ask one more time. The user has 3 tries until the program will exit automatically
-		 * After the program has access to the txt file, the values will be sent to Account.Account(card,pin,balance)
-		 */
+		System.out.println("==========================================================================================");
+		System.out.println("==========================================================================================");
+		System.out.println("888       888          888                                                888                       \r\n" + 
+				"888   o   888          888                                                888                       \r\n" + 
+				"888  d8b  888          888                                                888                       \r\n" + 
+				"888 d888b 888  .d88b.  888  .d8888b  .d88b.  88888b.d88b.   .d88b.        888888  .d88b.            \r\n" + 
+				"888d88888b888 d8P  Y8b 888 d88P\"    d88\"\"88b 888 \"888 \"88b d8P  Y8b       888    d88\"\"88b           \r\n" + 
+				"88888P Y88888 88888888 888 888      888  888 888  888  888 88888888       888    888  888           \r\n" + 
+				"8888P   Y8888 Y8b.     888 Y88b.    Y88..88P 888  888  888 Y8b.           Y88b.  Y88..88P           \r\n" + 
+				"888P     Y888  \"Y8888  888  \"Y8888P  \"Y88P\"  888  888  888  \"Y8888         \"Y888  \"Y88P\"            \r\n" + 
+				"                                                                                                    \r\n" + 
+				"   8888888b.   .d8888b.     888b    888              d8888 88888888888 888b     d888 \r\n" + 
+				"   888   Y88b d88P  \"88b    8888b   888             d88888     888     8888b   d8888 \r\n" + 
+				"   888    888 Y88b. d88P    88888b  888            d88P888     888     88888b.d88888 \r\n" + 
+				"   888   d88P  \"Y8888P\"     888Y88b 888           d88P 888     888     888Y88888P888 \r\n" + 
+				"   8888888P\"  .d88P88K.d88P 888 Y88b888          d88P  888     888     888 Y888P 888 \r\n" + 
+				"   888 T88b   888\"  Y888P\"  888  Y88888         d88P   888     888     888  Y8P  888 \r\n" + 
+				"   888  T88b  Y88b .d8888b  888   Y8888        d8888888888     888     888   \"   888 \r\n" + 
+				"   888   T88b  \"Y8888P\" Y88b888    Y888       d88P     888     888     888       888");
+		System.out.println("==========================================================================================");
+		System.out.println("==========================================================================================\n\n\n");
+
+		System.out.println("==========================================================================================");
+		System.out.print("Please Enter Card Number: "); // give a 6 digit card num
+		int cardNum = sc.nextInt();//takes the card number from user
+		boolean willUserExit = false;
 		
 		try 
 		{
@@ -47,7 +61,7 @@ public class ATM
 		//fix pin number attempts
 		for(int i = 0; i < 3; i++) 
 		{
-			System.out.println("Please Enter Pin Number: "); // 5 digit pin num
+			System.out.print("Please Enter Pin Number:  "); // 5 digit pin num
 			//if card num and pin num are right then thats when you get this menu
 			//if not the program will exit after 3 tries
 			int pinNum = sc.nextInt();
@@ -58,34 +72,25 @@ public class ATM
 				Account userBankAccount = new Account(cardNumberFromFile, pinNumberFromFile, balanceFromFile);//THE ACCOUNT OF THE CURRENT USER
 				
 				//WELCOME Message
+				System.out.println("==========================================================================================");
 				System.out.println("Hello, Welcome to your Bank Account");
 				//after the program has the balance show this menu
-				System.out.println("Choose from the following Transactions or Exit.");
-				System.out.println("1 - Deposit Funds.");
-				System.out.println("2 - Withdraw Funds.");
-				System.out.println("3 - Check Balance.");
-				System.out.println("4 - Transfer Balance.");
-				System.out.println("5 - Exit.");
-				
-				int choice = sc.nextInt();//choice for menu
-				//switch case to send to diff class
-				switch(choice) 
+				while(!willUserExit) 
 				{
-					case 1:
-						Deposit.deposit();
-						break;
-					case 2:
-						Withdraw.withdraw();
-						break;
-					case 3:
-						CheckBalance.checkBalance();
-						break;
-					case 4:
-						TransferFund.transferFund();
-						break;
-					case 5:
-						System.out.println("Thank you for using our ATM. Have a nice day.");
-						System.exit(0);					
+					menuChoice();
+					//return to menu
+					System.out.println("Would like to return to MENU?");
+					System.out.println("1. Yes\n2. No");
+					int userReturn = sc.nextInt();
+					
+					if(userReturn == 1) 
+					{
+						willUserExit = false;
+					}
+					else if(userReturn == 2) 
+					{
+						willUserExit = true;
+					}
 				}
 				//print the receipt
 				PrintReceipt.printReceipt();
@@ -117,6 +122,41 @@ public class ATM
 		{
 			System.out.print("Writing to file problem");
 		}
+		
+
+	
 	} // End of menu
+	
+	public static void menuChoice() 
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Choose from the following Transactions or Exit.");
+		System.out.println("1 - Deposit Funds.");
+		System.out.println("2 - Withdraw Funds.");
+		System.out.println("3 - Check Balance.");
+		System.out.println("4 - Transfer Balance.");
+		System.out.println("5 - Exit.");
+		
+		int choice = sc.nextInt();//choice for menu
+		//switch case to send to diff class
+		switch(choice) 
+		{
+			case 1:
+				Deposit.deposit();
+				break;
+			case 2:
+				Withdraw.withdraw();
+				break;
+			case 3:
+				CheckBalance.checkBalance();
+				break;
+			case 4:
+				TransferFund.transferFund();
+				break;
+			case 5:
+				System.out.println("Thank you for using our ATM. Have a nice day.");
+				System.exit(0);					
+		}
+	}
 } // End of ATM class
 
