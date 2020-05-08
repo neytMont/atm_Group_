@@ -19,7 +19,8 @@ public class ATM
 		
 		System.out.println("==========================================================================================");
 		System.out.println("==========================================================================================");
-		System.out.println("888       888          888                                                888                       \r\n" + 
+		System.out.println(
+				"888       888          888                                                888                       \r\n" + 
 				"888   o   888          888                                                888                       \r\n" + 
 				"888  d8b  888          888                                                888                       \r\n" + 
 				"888 d888b 888  .d88b.  888  .d8888b  .d88b.  88888b.d88b.   .d88b.        888888  .d88b.            \r\n" + 
@@ -39,70 +40,82 @@ public class ATM
 		System.out.println("==========================================================================================");
 		System.out.println("==========================================================================================\n\n\n");
 
-		System.out.println("==========================================================================================");
+		System.out.println("===========================================");
 		System.out.print("Please Enter Card Number: "); // give a 6 digit card num
-		int cardNum = sc.nextInt();//takes the card number from user
+		String cardNum1 = sc.next();//takes the card number from user
 		boolean willUserExit = false;
 		
 		try 
 		{
-			Path fileScan = Paths.get(cardNum + ".txt");//search for card num text file
+			Path fileScan = Paths.get(cardNum1 + ".txt");//search for card num text file
 			lines = Files.readAllLines(fileScan);//put all lines in a List of strings
 			cardNumberFromFile = Integer.parseInt(lines.get(0));//the card number that is on the file(file name)
 			pinNumberFromFile = Integer.parseInt(lines.get(1));//the pin number that is on the file
 			balanceFromFile = lines.get(2);//balance amount on the file
 		}
+		/**Expexted in the file
+		 * line 0 => card number
+		 * line 1 => pin number
+		 * line 2 => checking balance
+		 */
 		catch(Exception e) 
 		{
-			System.out.println("Card does not Exist");
+			System.out.println("Error: Card does not Exist");
 			System.exit(0);
 		}
 
 		//fix pin number attempts
 		for(int i = 0; i < 3; i++) 
 		{
-			System.out.print("Please Enter Pin Number:  "); // 5 digit pin num
+			System.out.print("Please Enter Pin Number : "); // 5 digit pin num
 			//if card num and pin num are right then thats when you get this menu
 			//if not the program will exit after 3 tries
-			int pinNum = sc.nextInt();
-			
-			if(pinNum == pinNumberFromFile) 
+			try 
 			{
-				i += 2;
-				Account userBankAccount = new Account(cardNumberFromFile, pinNumberFromFile, balanceFromFile);//THE ACCOUNT OF THE CURRENT USER
+				String pinNum = sc.next();
 				
-				//WELCOME Message
-				System.out.println("==========================================================================================");
-				System.out.println("Hello, Welcome to your Bank Account");
-				//after the program has the balance show this menu
-				while(!willUserExit) 
+				if(Integer.parseInt(pinNum) == pinNumberFromFile) 
 				{
-					menuChoice();
-					//return to menu
-					System.out.println("Would like to return to MENU?");
-					System.out.println("1. Yes\n2. No");
-					int userReturn = sc.nextInt();
+					i += 2;
+					Account userBankAccount = new Account(cardNumberFromFile, pinNumberFromFile, balanceFromFile);//THE ACCOUNT OF THE CURRENT USER
 					
-					if(userReturn == 1) 
+					//WELCOME Message
+					System.out.println("===========================================\n\n");
+					System.out.println("Hello, Welcome to your Bank Account");
+					//after the program has the balance show this menu
+					while(!willUserExit) 
 					{
-						willUserExit = false;
+						menuChoice();
+						//return to menu
+						System.out.println("Would like to return to MENU?");
+						System.out.println("1. Yes\n2. No");
+						int userReturn = sc.nextInt();
+						
+						if(userReturn == 1) 
+						{
+							willUserExit = false;
+						}
+						else if(userReturn == 2) 
+						{
+							willUserExit = true;
+						}
 					}
-					else if(userReturn == 2) 
-					{
-						willUserExit = true;
-					}
+					//print the receipt
+					PrintReceipt.printReceipt();
 				}
-				//print the receipt
-				PrintReceipt.printReceipt();
-			}
-			else //else if the pin number entered by the user is right
-			{
-				System.out.println("Wrong Pin Number. Please try again");
-				if(i == 3) //if the user has used the 3 attempts. else go back to loop
+				else //else if the pin number entered by the user is right
 				{
-					System.out.println("Login Attempt Exceeded Allowed Ammount.");
-					System.exit(0);
-				}	
+					System.out.println("Wrong Pin Number. Please try again");
+					if(i == 2) //if the user has used the 3 attempts. else go back to loop
+					{
+						System.out.println("Login Attempt Exceeded Allowed Ammount.");
+						System.exit(0);
+					}	
+				}
+			}
+			catch(NumberFormatException ex) 
+			{
+				System.out.println("Error: Wrong Pin Number. Please try again");
 			}
 		}//end of for loop pin num verification
 		
