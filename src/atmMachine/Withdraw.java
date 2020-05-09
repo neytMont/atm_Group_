@@ -15,7 +15,7 @@ public class Withdraw
 
 		for(int i = 0; i < 3; i++)//user gets 3 tries
 		{
-			System.out.println("How much woul you like to withdraw?");
+			System.out.println("How much would you like to withdraw?");
 			withdrawAmount = scan.nextDouble();
 			
 			if(withdrawAmount >= Account.getBalance()) 

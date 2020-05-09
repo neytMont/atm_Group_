@@ -55,7 +55,7 @@ public class TransferFund
 				catch(Exception e) 
 				{
 					System.out.println("Card does not Exist");
-					System.exit(0);
+					System.exit(0);// go back to main menu......
 				}
 				Account.setBalance(newBalance);
 				System.out.println("==========================================");

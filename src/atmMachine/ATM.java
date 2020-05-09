@@ -13,9 +13,8 @@ public class ATM
 		int cardNumberFromFile = 0;//holder of the cardNumber
 		int pinNumberFromFile = 0;//holder of the pinNumber
 		String balanceFromFile = null;//holder of balance that is on the file. String so that it can read
-		
 		Scanner sc = new Scanner(System.in);
-		List<String> lines = null;
+		List<String> lines = null;//collection
 		
 		System.out.println("==========================================================================================");
 		System.out.println("==========================================================================================");
@@ -29,19 +28,18 @@ public class ATM
 				"8888P   Y8888 Y8b.     888 Y88b.    Y88..88P 888  888  888 Y8b.           Y88b.  Y88..88P           \r\n" + 
 				"888P     Y888  \"Y8888  888  \"Y8888P  \"Y88P\"  888  888  888  \"Y8888         \"Y888  \"Y88P\"            \r\n" + 
 				"                                                                                                    \r\n" + 
-				"   8888888b.   .d8888b.     888b    888              d8888 88888888888 888b     d888 \r\n" + 
-				"   888   Y88b d88P  \"88b    8888b   888             d88888     888     8888b   d8888 \r\n" + 
-				"   888    888 Y88b. d88P    88888b  888            d88P888     888     88888b.d88888 \r\n" + 
-				"   888   d88P  \"Y8888P\"     888Y88b 888           d88P 888     888     888Y88888P888 \r\n" + 
-				"   8888888P\"  .d88P88K.d88P 888 Y88b888          d88P  888     888     888 Y888P 888 \r\n" + 
-				"   888 T88b   888\"  Y888P\"  888  Y88888         d88P   888     888     888  Y8P  888 \r\n" + 
-				"   888  T88b  Y88b .d8888b  888   Y8888        d8888888888     888     888   \"   888 \r\n" + 
-				"   888   T88b  \"Y8888P\" Y88b888    Y888       d88P     888     888     888       888");
+				"    8888888b.   .d8888b.     888b    888              d8888 88888888888 888b     d888 \r\n" + 
+				"    888   Y88b d88P  \"88b    8888b   888             d88888     888     8888b   d8888 \r\n" + 
+				"    888    888 Y88b. d88P    88888b  888            d88P888     888     88888b.d88888 \r\n" + 
+				"    888   d88P  \"Y8888P\"     888Y88b 888           d88P 888     888     888Y88888P888 \r\n" + 
+				"    8888888P\"  .d88P88K.d88P 888 Y88b888          d88P  888     888     888 Y888P 888 \r\n" + 
+				"    888 T88b   888\"  Y888P\"  888  Y88888         d88P   888     888     888  Y8P  888 \r\n" + 
+				"    888  T88b  Y88b .d8888b  888   Y8888        d8888888888     888     888   \"   888 \r\n" + 
+				"    888   T88b  \"Y8888P\" Y88b888    Y888       d88P     888     888     888       888");
 		System.out.println("==========================================================================================");
 		System.out.println("==========================================================================================\n\n\n");
-
 		System.out.println("===========================================");
-		System.out.print("Please Enter Card Number: "); // give a 6 digit card num
+		System.out.print("Please Enter Card Number: "); // give a 5 digit card num
 		String cardNum1 = sc.next();//takes the card number from user
 		boolean willUserExit = false;
 		
@@ -73,7 +71,6 @@ public class ATM
 			try 
 			{
 				String pinNum = sc.next();
-				
 				if(Integer.parseInt(pinNum) == pinNumberFromFile) 
 				{
 					i += 2;
@@ -105,7 +102,7 @@ public class ATM
 				}
 				else //else if the pin number entered by the user is right
 				{
-					System.out.println("Wrong Pin Number. Please try again");
+					System.out.println("Error: Wrong Pin Number. Please try again");
 					if(i == 2) //if the user has used the 3 attempts. else go back to loop
 					{
 						System.out.println("Login Attempt Exceeded Allowed Ammount.");
@@ -135,9 +132,6 @@ public class ATM
 		{
 			System.out.print("Writing to file problem");
 		}
-		
-
-	
 	} // End of menu
 	
 	public static void menuChoice() 
@@ -172,4 +166,3 @@ public class ATM
 		}
 	}
 } // End of ATM class
-
