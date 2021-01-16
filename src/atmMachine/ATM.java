@@ -15,7 +15,6 @@ public class ATM
 		String balanceFromFile = null;//holder of balance that is on the file. String so that it can read
 		Scanner sc = new Scanner(System.in);
 		List<String> lines = null;//collection
-		
 		System.out.println("==========================================================================================");
 		System.out.println("==========================================================================================");
 		System.out.println(
