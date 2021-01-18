@@ -40,7 +40,6 @@ public class ATM
 		System.out.print("Please Enter Card Number: "); // give a 5 digit card num
 		String cardNum1 = sc.next();//takes the card number from user
 		boolean willUserExit = false;
-		
 		try 
 		{
 			Path fileScan = Paths.get(cardNum1 + ".txt");//search for card num text file
