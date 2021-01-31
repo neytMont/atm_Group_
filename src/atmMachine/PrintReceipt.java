@@ -1,5 +1,4 @@
 package atmMachine;
-
 import java.util.Scanner;
 
 public class PrintReceipt
