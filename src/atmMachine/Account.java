@@ -1,7 +1,6 @@
 package atmMachine;
 
-public class Account
-{
+public class Account{
 	static int cardNum;
 	static int pinNum;
 	static String balance;
